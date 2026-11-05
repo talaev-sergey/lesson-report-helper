@@ -1,28 +1,3 @@
-# Отчётник
+# Отчеты уроков по модулям
 
-Статический сайт для поиска и копирования готовых отчетов о занятиях
-KIBERone. Работает без сервера и собирается GitHub Pages.
-
-## Локальный запуск
-
-Откройте проект через любой локальный веб-сервер, например:
-
-```sh
-python -m http.server 8000
-```
-
-Затем откройте `http://localhost:8000`.
-
-## Публикация на GitHub Pages
-
-1. Создайте репозиторий GitHub и отправьте файлы проекта в ветку `main`.
-2. В настройках репозитория откройте **Settings → Pages**.
-3. В разделе **Build and deployment** выберите **GitHub Actions**.
-4. После push workflow автоматически опубликует сайт.
-
-Исходные Markdown-отчеты хранятся в `data/source/`. Чтобы пересобрать
-поисковую базу после их обновления, запустите:
-
-```sh
-python scripts/build_data.py
-```
+[![Открыть сайт](https://img.shields.io/badge/Открыть_сайт-1f6b52?style=for-the-badge)](https://talaev-sergey.github.io/lesson-report-helper/)
