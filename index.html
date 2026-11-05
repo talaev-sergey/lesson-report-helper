@@ -29,17 +29,11 @@
           <kbd>/</kbd>
         </label>
         <nav class="module-list" id="module-list" aria-label="Список модулей"></nav>
-        <div class="sidebar-footer">
-          <span class="status-indicator"></span>
-          <span>База отчетов готова</span>
-          <span class="footer-sparkle">✳</span>
-        </div>
       </aside>
 
       <main class="main-area">
         <header class="topbar">
           <div class="breadcrumbs"><span>БИБЛИОТЕКА</span><span class="crumb-slash">/</span><strong id="crumb-module">ЗАГРУЗКА</strong></div>
-          <div class="topbar-right"><span class="topbar-note">Рабочее пространство тьютора</span><span class="avatar">Т</span></div>
         </header>
 
         <section class="workspace">
@@ -68,20 +62,20 @@
                 <div class="selected-copy"><span class="selected-label">ТЕМА ЗАНЯТИЯ</span><h3>Выберите урок</h3></div>
               </div>
               <div class="copy-actions">
-                <button class="button button-primary" id="copy-report" disabled>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg>
-                  <span>Скопировать отчет</span><kbd>↵</kbd>
-                </button>
-                <button class="button button-secondary" id="copy-title" disabled>
+                <button class="button button-primary" id="copy-title" disabled>
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h10M4 17.5h7"></path><path d="m17 16 2 2 3-4"></path></svg>
-                  <span>Название урока</span>
+                  <span>Скопировать название урока</span>
+                </button>
+                <button class="button button-secondary" id="copy-report" disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg>
+                  <span>Скопировать текст</span><kbd>↵</kbd>
                 </button>
               </div>
               <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></div>
             </section>
 
             <aside class="preview-panel">
-              <div class="preview-header"><div><span class="panel-kicker">ПРЕДПРОСМОТР</span><h3>Текст отчета</h3></div><span class="preview-live"><i></i> ГОТОВ К КОПИРОВАНИЮ</span></div>
+              <div class="preview-header"><div><span class="panel-kicker">ПРЕДПРОСМОТР</span><h3>Текст отчета</h3></div></div>
               <div class="report-paper" id="report-preview">
                 <div class="paper-top"><span class="paper-logo">k<span>1</span></span><span class="paper-caption">ОТЧЕТ О ЗАНЯТИИ</span></div>
                 <div class="paper-content"><div class="paper-placeholder"><span class="placeholder-star">✳</span><strong>Здесь появится отчет</strong><p>Выберите модуль и урок,<br />чтобы увидеть текст для родителей.</p></div></div>
@@ -91,7 +85,7 @@
             </aside>
           </div>
 
-          <footer class="workspace-footer"><span>Материалы для бережной обратной связи</span><span class="footer-decoration">✳ <b>учимся · пробуем · создаём</b></span></footer>
+          <footer class="workspace-footer"><span class="footer-decoration">✳ <b>учимся · пробуем · создаём</b></span></footer>
         </section>
       </main>
     </div>
