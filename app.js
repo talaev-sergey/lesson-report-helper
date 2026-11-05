@@ -52,7 +52,6 @@ function renderModules() {
 
     return `<div class="module-card${selected ? ' selected' : ''}">
       <button class="module-item" type="button" data-module="${index}" aria-expanded="${selected}">
-        <span class="module-symbol">${escapeHtml(module.name.slice(0, 1).toLocaleUpperCase('ru-RU'))}</span>
         <span class="module-name">${escapeHtml(module.name)}</span>
         <span class="module-lessons">${module.lessons.length}</span>
       </button>${chips}
