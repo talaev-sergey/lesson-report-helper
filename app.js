@@ -24,13 +24,6 @@ function escapeHtml(value) {
   })[char]);
 }
 
-function slug(value) {
-  return value.toLocaleLowerCase('ru-RU')
-    .replace(/ё/g, 'е')
-    .replace(/[^a-zа-я0-9]+/gi, '_')
-    .replace(/^_+|_+$/g, '');
-}
-
 function lessonHeading(lesson) {
   return `Урок ${lesson.number}: ${lesson.title}`;
 }
@@ -163,8 +156,7 @@ elements.copyReport.addEventListener('click', () => {
 elements.copyTitle.addEventListener('click', () => {
   const module = state.modules[state.selectedModule];
   const lesson = module.lessons[state.selectedLesson];
-  const group = lesson.group ? `_${slug(lesson.group)}` : '';
-  copy(`${slug(module.name)}_урок_${lesson.number}${group}_${slug(lesson.title)}`, 'Название урока');
+  copy(`${module.name}_${lesson.number}_урок`, 'Название урока');
 });
 document.addEventListener('keydown', (event) => {
   if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
