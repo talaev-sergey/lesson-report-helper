@@ -7,6 +7,19 @@ const elements = {
   lessonTotal: document.querySelector('#lesson-total'),
 };
 
+const brandPhotoButton = document.querySelector('.brand-photo-button');
+let brandPhotoTimeout;
+brandPhotoButton.addEventListener('click', () => {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  window.clearTimeout(brandPhotoTimeout);
+  brandPhotoButton.classList.remove('is-tapped');
+  void brandPhotoButton.offsetWidth;
+  brandPhotoButton.classList.add('is-tapped');
+  brandPhotoTimeout = window.setTimeout(() => {
+    brandPhotoButton.classList.remove('is-tapped');
+  }, 1100);
+});
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
