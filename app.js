@@ -1,4 +1,4 @@
-const state = { modules: [], selectedModule: -1, selectedLesson: -1 };
+const state = { modules: [], selectedModule: -1, selectedLesson: -1, exactSearchModule: -1 };
 
 const elements = {
   search: document.querySelector('#module-search'),
@@ -19,11 +19,30 @@ function lessonHeading(lesson) {
     : `Урок ${lesson.number}: ${lesson.title}`;
 }
 
+function normalizeSearch(value) {
+  return value.toLocaleLowerCase('ru-RU').trim().replace(/\s+/g, ' ');
+}
+
+function findExactLesson(query) {
+  const normalized = normalizeSearch(query);
+  for (const [moduleIndex, module] of state.modules.entries()) {
+    const prefix = `${normalizeSearch(module.name)} `;
+    if (!normalized.startsWith(prefix)) continue;
+    const lessonNumber = normalized.slice(prefix.length);
+    if (!/^\d+$/.test(lessonNumber)) continue;
+    const lessonIndex = module.lessons.findIndex((lesson) => lesson.number === Number(lessonNumber));
+    if (lessonIndex !== -1) return { moduleIndex, lessonIndex };
+  }
+  return null;
+}
+
 function renderModules() {
   const query = elements.search.value.trim().toLocaleLowerCase('ru-RU');
   const filtered = state.modules
     .map((module, index) => ({ module, index }))
-    .filter(({ module }) => !query || module.name.toLocaleLowerCase('ru-RU').includes(query)
+    .filter(({ module }, index) => state.exactSearchModule >= 0
+      ? index === state.exactSearchModule
+      : !query || module.name.toLocaleLowerCase('ru-RU').includes(query)
       || module.lessons.some((lesson) => lesson.title.toLocaleLowerCase('ru-RU').includes(query)));
 
   elements.moduleCount.textContent = filtered.length;
@@ -73,7 +92,15 @@ async function copy(text, label, card) {
   }
 }
 
-elements.search.addEventListener('input', renderModules);
+elements.search.addEventListener('input', () => {
+  const exact = findExactLesson(elements.search.value);
+  state.exactSearchModule = exact?.moduleIndex ?? -1;
+  if (exact) {
+    state.selectedModule = exact.moduleIndex;
+    state.selectedLesson = exact.lessonIndex;
+  }
+  renderModules();
+});
 elements.list.addEventListener('click', (event) => {
   const card = event.target.closest('.module-card');
   if (!card) return;
