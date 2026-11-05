@@ -8,16 +8,10 @@ const elements = {
 };
 
 const brandPhotoButton = document.querySelector('.brand-photo-button');
-let brandPhotoTimeout;
 brandPhotoButton.addEventListener('click', () => {
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  window.clearTimeout(brandPhotoTimeout);
-  brandPhotoButton.classList.remove('is-tapped');
-  void brandPhotoButton.offsetWidth;
-  brandPhotoButton.classList.add('is-tapped');
-  brandPhotoTimeout = window.setTimeout(() => {
-    brandPhotoButton.classList.remove('is-tapped');
-  }, 1100);
+  const expanded = brandPhotoButton.classList.toggle('is-expanded');
+  brandPhotoButton.setAttribute('aria-pressed', String(expanded));
+  brandPhotoButton.setAttribute('aria-label', expanded ? 'Уменьшить изображение' : 'Увеличить изображение');
 });
 
 function escapeHtml(value) {
