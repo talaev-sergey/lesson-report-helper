@@ -4,91 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f4f5f0" />
-    <meta name="description" content="Быстрый поиск и копирование отчетов о занятиях KIBERone для родителей." />
-    <title>Отчётник — отчёты о занятиях</title>
+    <meta name="description" content="Поиск и копирование отчетов о занятиях KIBERone." />
+    <title>Отчеты уроков по модулям</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar">
-        <a class="brand" href="#" aria-label="Отчётник — главная">
+    <aside class="sidebar">
+      <header class="catalog-header">
+        <a class="brand" href="#" aria-label="Отчеты уроков по модулям">
           <span class="brand-mark"><span></span><span></span><span></span></span>
-          <span class="brand-name">отчётник<span class="brand-dot">.</span></span>
+          <span class="brand-name">отчёты<span>.</span></span>
         </a>
-
-        <div class="side-label-row">
-          <span class="side-label">МОДУЛИ</span>
-          <span class="module-count" id="module-count">—</span>
-        </div>
+        <h1>Отчеты уроков <span>по модулям</span></h1>
+        <p>Выберите модуль, затем номер урока</p>
         <label class="search-box" for="module-search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.2 4.2"></path></svg>
           <input id="module-search" type="search" placeholder="Найти модуль..." autocomplete="off" />
           <kbd>/</kbd>
         </label>
-        <nav class="module-list" id="module-list" aria-label="Список модулей"></nav>
-      </aside>
+        <div class="catalog-count"><span id="module-count">—</span> модулей <i></i> <span id="lesson-total">—</span> уроков</div>
+      </header>
 
-      <main class="main-area">
-        <header class="topbar">
-          <div class="breadcrumbs"><span>БИБЛИОТЕКА</span><span class="crumb-slash">/</span><strong id="crumb-module">ЗАГРУЗКА</strong></div>
-        </header>
+      <nav class="module-list" id="module-list" aria-label="Список модулей"></nav>
 
-        <section class="workspace">
-          <div class="welcome-row">
-            <div>
-              <div class="eyebrow"><span class="eyebrow-line"></span> KIBERone · РАБОЧИЕ МАТЕРИАЛЫ</div>
-              <h1>Отчёт <span>родителям</span></h1>
-              <p class="intro">Найдите модуль, выберите урок и скопируйте готовый текст.</p>
-            </div>
-            <div class="lesson-total"><span class="total-icon">✳</span><div><strong id="lesson-total">—</strong><small>готовых отчетов</small></div></div>
-          </div>
-
-          <div class="content-grid">
-            <section class="lesson-panel" aria-labelledby="selected-module">
-              <div class="panel-topline"><span class="panel-kicker">ВЫБРАННЫЙ МОДУЛЬ</span><span class="panel-index" id="module-index">01</span></div>
-              <div class="module-heading-row">
-                <div class="module-icon" id="module-icon">✦</div>
-                <div><h2 id="selected-module">Загружаем материалы</h2><p id="module-meta">Подготавливаем список уроков</p></div>
-              </div>
-              <div class="form-row">
-                <label for="lesson-select">Номер и тема урока</label>
-                <div class="select-wrap"><select id="lesson-select" disabled><option>Загрузка…</option></select><span class="select-chevron">⌄</span></div>
-              </div>
-              <div class="selected-lesson" id="selected-lesson">
-                <div class="lesson-number"><span>УРОК</span><strong>—</strong></div>
-                <div class="selected-copy"><span class="selected-label">ТЕМА ЗАНЯТИЯ</span><h3>Выберите урок</h3></div>
-              </div>
-              <div class="copy-actions">
-                <button class="button button-primary" id="copy-title" disabled>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h10M4 17.5h7"></path><path d="m17 16 2 2 3-4"></path></svg>
-                  <span>Скопировать название урока</span>
-                </button>
-                <button class="button button-secondary" id="copy-report" disabled>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg>
-                  <span>Скопировать текст</span><kbd>↵</kbd>
-                </button>
-              </div>
-              <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></div>
-            </section>
-
-            <aside class="preview-panel">
-              <div class="preview-header"><div><span class="panel-kicker">ПРЕДПРОСМОТР</span><h3>Текст отчета</h3></div></div>
-              <div class="report-paper" id="report-preview">
-                <div class="paper-top"><span class="paper-logo">k<span>1</span></span><span class="paper-caption">ОТЧЕТ О ЗАНЯТИИ</span></div>
-                <div class="paper-content"><div class="paper-placeholder"><span class="placeholder-star">✳</span><strong>Здесь появится отчет</strong><p>Выберите модуль и урок,<br />чтобы увидеть текст для родителей.</p></div></div>
-                <div class="paper-bottom"><span>СОЗДАНО ДЛЯ ТЬЮТОРА</span><span class="paper-page">01 <i>/</i> 01</span></div>
-              </div>
-              <div class="preview-foot"><span class="foot-check">✓</span><span>Текст переносится в буфер обмена целиком — вместе с темой урока и пунктами программы.</span></div>
-            </aside>
-          </div>
-
-          <footer class="workspace-footer"><span class="footer-decoration">✳ <b>учимся · пробуем · создаём</b></span></footer>
-        </section>
-      </main>
-    </div>
+      <footer class="selection-panel" id="selection-panel">
+        <div class="selection-info" id="selection-info">Выберите урок, чтобы скопировать название и отчет</div>
+        <div class="copy-actions">
+          <button class="button button-primary" id="copy-title" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h10M4 17.5h7"></path><path d="m17 16 2 2 3-4"></path></svg>
+            <span>Скопировать название урока</span>
+          </button>
+          <button class="button button-secondary" id="copy-report" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg>
+            <span>Скопировать отчет</span>
+          </button>
+        </div>
+        <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></div>
+      </footer>
+    </aside>
     <script src="app.js" defer></script>
   </body>
 </html>
